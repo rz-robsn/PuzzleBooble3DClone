@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using PuzzleBooble3DClone.GameComponents;
 
 namespace PuzzleBooble3DClone
 {
@@ -19,10 +20,15 @@ namespace PuzzleBooble3DClone
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        public Matrix View;
+        public Matrix Projection;     
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            Components.Add(new Ball(this));
         }
 
         /// <summary>
@@ -33,9 +39,9 @@ namespace PuzzleBooble3DClone
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
+            View = Matrix.CreateLookAt(new Vector3(10, 10, 10), new Vector3(0, 0, 0), Vector3.UnitZ);
+            Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 600f, 0.1f, 100f);
         }
 
         /// <summary>
@@ -44,10 +50,7 @@ namespace PuzzleBooble3DClone
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // TODO: use this.Content to load your game content here
+            base.LoadContent();
         }
 
         /// <summary>
@@ -81,7 +84,7 @@ namespace PuzzleBooble3DClone
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 
