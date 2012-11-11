@@ -49,8 +49,8 @@ namespace PuzzleBooble3DClone.GameComponents
                 {
                     effect.EnableDefaultLighting();
                     effect.World = World;
-                    effect.View = PuzzleBooble3dGame.ComponentManager.Camera.View;
-                    effect.Projection = PuzzleBooble3dGame.ComponentManager.Camera.Projection;
+                    effect.View = PuzzleBooble3dGame.Camera.View;
+                    effect.Projection = PuzzleBooble3dGame.Camera.Projection;
                 }
 
                 mesh.Draw();

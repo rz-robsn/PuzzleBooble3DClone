@@ -18,13 +18,10 @@ namespace PuzzleBooble3DClone.GameComponents
         public Vector3 Position;
         public Matrix World;
 
-        private PuzzleBooble3dGame game1;
         private float angle = 0;
 
-        public Floor(PuzzleBooble3dGame game) : base(game)
-        {
-            game1 = (PuzzleBooble3dGame)game;
-        }
+
+        public Floor(PuzzleBooble3dGame game) : base(game) {}
 
         public override void Initialize()
         {
@@ -57,8 +54,8 @@ namespace PuzzleBooble3DClone.GameComponents
                 {
                     effect.EnableDefaultLighting();
                     effect.World = World;
-                    effect.View = PuzzleBooble3dGame.ComponentManager.Camera.View;
-                    effect.Projection = PuzzleBooble3dGame.ComponentManager.Camera.Projection;
+                    effect.View = PuzzleBooble3dGame.Camera.View;
+                    effect.Projection = PuzzleBooble3dGame.Camera.Projection;
                 }
 
                 mesh.Draw();

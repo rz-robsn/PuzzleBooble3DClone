@@ -19,15 +19,22 @@ namespace PuzzleBooble3DClone
     {
         GraphicsDeviceManager graphics;
 
-        public GameComponentManager ComponentManager;
+        public Camera Camera;
 
         public PuzzleBooble3dGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            ComponentManager = new GameComponentManager(this);
-            Components.Add(ComponentManager);
+            Camera = new Camera(this);
+
+            Floor floor = new Floor(this);
+            BallGrid ballGrid = new BallGrid(this, floor);
+
+            Components.Add(Camera);
+            Components.Add(floor);
+            Components.Add(ballGrid);
+
         }
 
         /// <summary>

@@ -111,7 +111,6 @@
     <Compile Include="GameComponents\BallGrid.cs" />
     <Compile Include="GameComponents\Camera.cs" />
     <Compile Include="GameComponents\Floor.cs" />
-    <Compile Include="GameComponents\GameComponentManager.cs" />
     <Compile Include="GameComponents\PuzzleBoobleDrawableGameComponent.cs" />
     <Compile Include="GameComponents\PuzzleBoobleGameComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

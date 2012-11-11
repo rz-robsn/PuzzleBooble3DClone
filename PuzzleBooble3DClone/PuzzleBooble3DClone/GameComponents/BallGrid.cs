@@ -66,8 +66,12 @@ namespace PuzzleBooble3DClone.GameComponents
 
         public List<List<Ball>> Balls;
 
-        public BallGrid(PuzzleBooble3dGame puzzleGame) : base(puzzleGame) 
+        private Floor Floor;
+
+        public BallGrid(PuzzleBooble3dGame puzzleGame, Floor floor) : base(puzzleGame) 
         {
+            Floor = floor;
+
             Balls = new List<List<Ball>>(NUMBER_OF_ROWS);
             for (int i = 0; i < NUMBER_OF_ROWS; i++)
             {
@@ -89,14 +93,12 @@ namespace PuzzleBooble3DClone.GameComponents
             }
 
             this.SetBallAtPosition(0, 0, new Ball(PuzzleBooble3dGame, Vector3.Zero));
-
-            PuzzleBooble3dGame.Components.Add(Balls.ElementAt(0).ElementAt(0));
         }
 
         public override void Initialize()
         {
             base.Initialize();
-
+            PuzzleBooble3dGame.Components.Add(Balls.ElementAt(0).ElementAt(0));
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
@@ -132,7 +134,7 @@ namespace PuzzleBooble3DClone.GameComponents
         {
             get 
             {
-                return PuzzleBooble3dGame.ComponentManager.floor.GetTopLeftPosition() + new Vector3(Ball.BALL_RADIUS, Ball.BALL_RADIUS, Ball.BALL_RADIUS);
+                return Floor.GetTopLeftPosition() + new Vector3(Ball.BALL_RADIUS, Ball.BALL_RADIUS, Ball.BALL_RADIUS);
             }
         }
     }
