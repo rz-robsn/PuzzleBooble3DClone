@@ -15,19 +15,25 @@ namespace PuzzleBooble3DClone
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Microsoft.Xna.Framework.Game
+    public class PuzzleBooble3dGame : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
 
-        public Matrix View;
-        public Matrix Projection;     
+        public Camera Camera;
 
-        public Game1()
+        public PuzzleBooble3dGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            Components.Add(new Floor(this));
+            Camera = new Camera(this);
+            Floor floor = new Floor(this);
+            Ball ball = new Ball(this, floor.GetTopLeftPosition());
+            //ball.Position = floor.GetTopLeftPosition();
+
+            Components.Add(Camera);
+            Components.Add(floor);
+            Components.Add(ball);
         }
 
         /// <summary>
@@ -39,8 +45,6 @@ namespace PuzzleBooble3DClone
         protected override void Initialize()
         {
             base.Initialize();
-            View = Matrix.CreateLookAt(new Vector3(0, 50, 0), new Vector3(0, 0, 0), Vector3.UnitZ);
-            Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 600f, 0.1f, 100f);
         }
 
         /// <summary>

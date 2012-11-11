@@ -10,7 +10,7 @@ namespace PuzzleBooble3DClone
         /// </summary>
         static void Main(string[] args)
         {
-            using (Game1 game = new Game1())
+            using (PuzzleBooble3dGame game = new PuzzleBooble3dGame())
             {
                 game.Run();
             }

@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace PuzzleBooble3DClone.GameComponents
 {
-    public class Ball : DrawableGameComponent
+    public class Ball : PuzzleBoobleDrawableGameComponent
     {
         public Model model;
 
@@ -16,18 +16,14 @@ namespace PuzzleBooble3DClone.GameComponents
 
         private static readonly float BALL_RADIUS = 4.65f / 2;
 
-        private Game1 game1;
-
-        public Ball(Game1 game) : base(game)
+        public Ball(PuzzleBooble3dGame game, Vector3 position) : base(game) 
         {
-            game1 = (Game1)game;
+            Position = position;
         }
 
         public override void Initialize()
         {
             base.Initialize();
-
-            Position = Vector3.Zero;
         }
 
         protected override void LoadContent()
@@ -51,8 +47,8 @@ namespace PuzzleBooble3DClone.GameComponents
                 {
                     effect.EnableDefaultLighting();
                     effect.World = World;
-                    effect.View = game1.View;
-                    effect.Projection = game1.Projection;
+                    effect.View = PuzzleBooble3dGame.Camera.View;
+                    effect.Projection = PuzzleBooble3dGame.Camera.Projection;
                 }
 
                 mesh.Draw();
