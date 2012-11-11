@@ -9,7 +9,7 @@ namespace PuzzleBooble3DClone.GameComponents
 {
     public class Floor : PuzzleBoobleDrawableGameComponent
     {
-        public static readonly float SCALE = 0.2f;
+        public static readonly float SCALE = 0.19f;
         public static readonly float WIDTH = 302 * SCALE;
         public static readonly float HEIGHT = 302 * SCALE;
         public static readonly float DEPTH = 0.25f * SCALE;
