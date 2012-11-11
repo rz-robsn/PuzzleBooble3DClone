@@ -49,27 +49,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="floor-tile_30x30cm_2mm-inerside.fbx">
-      <Name>floor-tile_30x30cm_2mm-inerside</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="floor1.fbx">
-      <Name>floor1</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="floor2.fbx">
-      <Name>floor2</Name>
-      <Importer>FbxImporter</Importer>
-      <Processor>ModelProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="floor.fbx">
       <Name>floor</Name>
       <Importer>FbxImporter</Importer>
