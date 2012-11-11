@@ -9,12 +9,14 @@ namespace PuzzleBooble3DClone.GameComponents
 {
     public class Ball : PuzzleBoobleDrawableGameComponent
     {
+        public static readonly float BALL_RADIUS = 4.65f / 2;
+
         public Model model;
 
         public Vector3 Position;
-        public Matrix World;
+        public float Speed;
 
-        private static readonly float BALL_RADIUS = 4.65f / 2;
+        public Matrix World;
 
         public Ball(PuzzleBooble3dGame game, Vector3 position) : base(game) 
         {

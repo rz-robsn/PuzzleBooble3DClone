@@ -16,7 +16,7 @@ namespace PuzzleBooble3DClone.GameComponents
         public override void Initialize()
         {
             base.Initialize();
-            View = Matrix.CreateLookAt(new Vector3(0, 50, 50), new Vector3(0, 0, 0), Vector3.UnitZ);
+            View = Matrix.CreateLookAt(new Vector3(50, 0, 50), new Vector3(0, 0, 0), Vector3.UnitZ);
             Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.ToRadians(45), 800f / 600f, 0.1f, 100f);
         }
 

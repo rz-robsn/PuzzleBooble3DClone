@@ -16,7 +16,7 @@ namespace PuzzleBooble3DClone.GameComponents
         {
             Camera = new Camera(PuzzleBooble3dGame);
             Floor floor = new Floor(PuzzleBooble3dGame);
-            Ball ball = new Ball(PuzzleBooble3dGame, floor.GetTopLeftPosition());
+            Ball ball = new Ball(PuzzleBooble3dGame, floor.GetTopLeftPosition() + new Vector3(Ball.BALL_RADIUS, Ball.BALL_RADIUS, Ball.BALL_RADIUS));
 
             PuzzleBooble3dGame.Components.Add(Camera);
             PuzzleBooble3dGame.Components.Add(floor);
