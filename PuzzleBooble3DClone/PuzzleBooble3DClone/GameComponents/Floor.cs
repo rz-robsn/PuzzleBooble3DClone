@@ -7,18 +7,21 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace PuzzleBooble3DClone.GameComponents
 {
-    public class Ball : DrawableGameComponent
+    public class Floor : DrawableGameComponent
     {
-        public Model model;
+        public static readonly float SCALE = 0.2f;
+        public static readonly float WIDTH = 302 * SCALE;
+        public static readonly float HEIGHT = 0.25f * SCALE;
+        public static readonly float DEPTH = 302 * SCALE;
 
-        public Vector3 Position;
+        public Model model;
+        public Vector3 TopLeftPosition;
         public Matrix World;
 
-        private static readonly float BALL_RADIUS = 4.65f / 2;
-
         private Game1 game1;
+        private float angle = 0;
 
-        public Ball(Game1 game) : base(game)
+        public Floor(Game1 game) : base(game)
         {
             game1 = (Game1)game;
         }
@@ -27,19 +30,22 @@ namespace PuzzleBooble3DClone.GameComponents
         {
             base.Initialize();
 
-            Position = Vector3.Zero;
+            TopLeftPosition = new Vector3(0, 0, 0);
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
-            model = Game.Content.Load<Model>("UntexturedSphere");
+            model = Game.Content.Load<Model>("floor-tile_30x30cm_2mm-inerside");
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            World = Matrix.CreateTranslation(Position);
+            angle += 0.05f;
+            TopLeftPosition += new Vector3(0,0,0);
+
+            World = Matrix.CreateTranslation(TopLeftPosition) * Matrix.CreateScale(SCALE);
         }
 
         public override void Draw(GameTime gameTime)
