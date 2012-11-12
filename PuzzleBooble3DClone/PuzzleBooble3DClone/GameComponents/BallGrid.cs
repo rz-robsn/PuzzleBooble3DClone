@@ -41,8 +41,53 @@ namespace PuzzleBooble3DClone.GameComponents
                 }
             }
 
-            //this.SetNewBallAtPosition(0, 0, new Ball(PuzzleBooble3dGame, Vector3.Zero));
-            //this.SetNewBallAtPosition(0, 1, new Ball(PuzzleBooble3dGame, Vector3.Zero));
+                SetNewBallAtPosition(0, 0, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Red));
+                SetNewBallAtPosition(0, 1, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Red));
+                SetNewBallAtPosition(0, 2, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Yellow));
+                SetNewBallAtPosition(0, 3, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Yellow));
+                SetNewBallAtPosition(0, 4, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Blue));
+                SetNewBallAtPosition(0, 5, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Blue));
+                SetNewBallAtPosition(0, 6, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Green));
+                SetNewBallAtPosition(0, 7, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Green));
+                SetNewBallAtPosition(1, 0, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Red));
+                SetNewBallAtPosition(1, 1, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Red));
+                SetNewBallAtPosition(1, 2, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Yellow));
+                SetNewBallAtPosition(1, 3, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Yellow));
+                SetNewBallAtPosition(1, 4, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Blue));
+                SetNewBallAtPosition(1, 5, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Blue));
+                SetNewBallAtPosition(1, 6, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Green));
+                SetNewBallAtPosition(2, 0, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Blue));
+                SetNewBallAtPosition(2, 1, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Blue));
+                SetNewBallAtPosition(2, 2, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Green));
+                SetNewBallAtPosition(2, 3, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Green));
+                SetNewBallAtPosition(2, 4, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Red));
+                SetNewBallAtPosition(2, 5, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Red));
+                SetNewBallAtPosition(2, 6, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Yellow));
+                SetNewBallAtPosition(2, 7, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Yellow));
+                SetNewBallAtPosition(3, 0, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Blue));
+                SetNewBallAtPosition(3, 1, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Green));
+                SetNewBallAtPosition(3, 2, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Green));
+                SetNewBallAtPosition(3, 3, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Red));
+                SetNewBallAtPosition(3, 4, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Red));
+                SetNewBallAtPosition(3, 5, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Yellow));
+                SetNewBallAtPosition(3, 6, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Yellow));
+
+                SetNewBallAtPosition(0, 8, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Silver));
+                SetNewBallAtPosition(0, 9, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Silver));
+                SetNewBallAtPosition(0, 10, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.DarkGrey));
+                SetNewBallAtPosition(0, 11, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.DarkGrey));
+                SetNewBallAtPosition(1, 7, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Silver));
+                SetNewBallAtPosition(1, 8, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Silver));
+                SetNewBallAtPosition(1, 9, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Silver));
+                SetNewBallAtPosition(1, 10, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.DarkGrey));
+                SetNewBallAtPosition(2, 8, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Orange));
+                SetNewBallAtPosition(2, 9, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Orange));
+                SetNewBallAtPosition(2, 10, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Purple));
+                SetNewBallAtPosition(2, 11, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Purple));
+                SetNewBallAtPosition(3, 7, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Orange));
+                SetNewBallAtPosition(3, 8, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Orange));
+                SetNewBallAtPosition(3, 9, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Purple));
+                SetNewBallAtPosition(3, 10, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Purple));
         }
 
         public override void Initialize()
