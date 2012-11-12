@@ -8,8 +8,8 @@ namespace PuzzleBooble3DClone.GameComponents
 {
     public class Camera : PuzzleBoobleGameComponent
     {
-        public Matrix View;
-        public Matrix Projection;     
+        public Matrix View {get; private set;}
+        public Matrix Projection { get; private set; }
 
         public Camera(PuzzleBooble3dGame game) : base(game) {}
 
