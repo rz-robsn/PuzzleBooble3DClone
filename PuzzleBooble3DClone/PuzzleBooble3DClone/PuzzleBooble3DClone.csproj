@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameComponents\Ball.cs" />
+    <Compile Include="GameComponents\BallAnimationHelper.cs" />
     <Compile Include="GameComponents\BallGrid.cs" />
     <Compile Include="GameComponents\Camera.cs" />
     <Compile Include="GameComponents\ContentRepository.cs" />

@@ -49,8 +49,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Spheres\BlueSphere.fbx">
-      <Name>BlueSphere</Name>
+    <Compile Include="Spheres\Sphere.fbx">
+      <Name>Sphere</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>

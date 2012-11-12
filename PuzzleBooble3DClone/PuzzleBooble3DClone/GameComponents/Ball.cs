@@ -17,13 +17,16 @@ namespace PuzzleBooble3DClone.GameComponents
         public float Speed;
         public Matrix World;
         public BallColor Color;
+        public Model Model;
 
-        private Model Model;
+        private BallAnimationHelper AnimationHelper;
         
         public Ball(PuzzleBooble3dGame game, Vector3 position, BallColor color) : base(game) 
         {
             Color = color;
             Position = position;
+
+            AnimationHelper = new BallAnimationHelper(this);
         }
 
         public override void Initialize()
@@ -34,32 +37,21 @@ namespace PuzzleBooble3DClone.GameComponents
         protected override void LoadContent()
         {
             base.LoadContent();
-            Model = Game.Content.Load<Model>("Spheres/BlueSphere");
+            Model = Game.Content.Load<Model>("Spheres/Sphere");
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             World = Matrix.CreateTranslation(Position);
+
+            AnimationHelper.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            foreach (ModelMesh mesh in Model.Meshes)
-            {
-                foreach (BasicEffect effect in mesh.Effects)
-                {
-                    effect.TextureEnabled = true;
-                    effect.Texture = PuzzleBooble3dGame.ContentRepository.RedTexture;
-                    effect.EnableDefaultLighting();
-                    effect.World = World;
-                    effect.View = PuzzleBooble3dGame.Camera.View;
-                    effect.Projection = PuzzleBooble3dGame.Camera.Projection;
-                }
-
-                mesh.Draw();
-            }
+            AnimationHelper.Draw(gameTime);
         }
     }
 }

@@ -8,8 +8,6 @@ namespace PuzzleBooble3DClone.GameComponents
 {
     public class ContentRepository : PuzzleBoobleDrawableGameComponent
     {
-        public Model SphereModel;
-
         public Texture2D BlueTexture;
         public Texture2D GreenTexture;
         public Texture2D RedTexture;
@@ -24,8 +22,6 @@ namespace PuzzleBooble3DClone.GameComponents
         protected override void LoadContent()
         {
             base.LoadContent();
-            SphereModel = Game.Content.Load<Model>("Spheres/BlueSphere");
-
             BlueTexture = Game.Content.Load<Texture2D>("Spheres/Blue");
             GreenTexture = Game.Content.Load<Texture2D>("Spheres/Green");
             RedTexture = Game.Content.Load<Texture2D>("Spheres/Red");

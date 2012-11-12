@@ -30,7 +30,6 @@ namespace PuzzleBooble3DClone.GameComponents
                     for (int j = 0; j < NUMBER_OF_COLUMNS_EVEN; j++)
                     {
                         Balls.ElementAt(i).Add(null);
-                        this.SetNewBallAtPosition(i, j, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Blue));
                     }
                 }
                 else
@@ -38,7 +37,6 @@ namespace PuzzleBooble3DClone.GameComponents
                     for (int j = 0; j < NUMBER_OF_COLUMNS_ODD; j++)
                     {
                         Balls.ElementAt(i).Add(null);
-                        this.SetNewBallAtPosition(i, j, new Ball(PuzzleBooble3dGame, Vector3.Zero, Ball.BallColor.Green));
                     }
                 }
             }
