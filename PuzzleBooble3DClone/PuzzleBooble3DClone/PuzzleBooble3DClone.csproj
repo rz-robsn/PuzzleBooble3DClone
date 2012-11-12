@@ -110,6 +110,7 @@
     <Compile Include="GameComponents\Ball.cs" />
     <Compile Include="GameComponents\BallGrid.cs" />
     <Compile Include="GameComponents\Camera.cs" />
+    <Compile Include="GameComponents\ContentRepository.cs" />
     <Compile Include="GameComponents\Floor.cs" />
     <Compile Include="GameComponents\PuzzleBoobleDrawableGameComponent.cs" />
     <Compile Include="GameComponents\PuzzleBoobleGameComponent.cs" />

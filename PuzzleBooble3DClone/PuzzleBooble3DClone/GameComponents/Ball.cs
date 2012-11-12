@@ -16,12 +16,13 @@ namespace PuzzleBooble3DClone.GameComponents
         public Vector3 Position;
         public float Speed;
         public Matrix World;
+        public BallColor Color;
 
         private Model Model;
-        private Texture2D Texture;
         
-        public Ball(PuzzleBooble3dGame game, Vector3 position) : base(game) 
+        public Ball(PuzzleBooble3dGame game, Vector3 position, BallColor color) : base(game) 
         {
+            Color = color;
             Position = position;
         }
 
@@ -34,7 +35,6 @@ namespace PuzzleBooble3DClone.GameComponents
         {
             base.LoadContent();
             Model = Game.Content.Load<Model>("Spheres/BlueSphere");
-            Texture = Game.Content.Load<Texture2D>("Spheres/Green");
         }
 
         public override void Update(GameTime gameTime)
@@ -51,7 +51,7 @@ namespace PuzzleBooble3DClone.GameComponents
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                     effect.TextureEnabled = true;
-                    effect.Texture = Texture;
+                    effect.Texture = PuzzleBooble3dGame.ContentRepository.RedTexture;
                     effect.EnableDefaultLighting();
                     effect.World = World;
                     effect.View = PuzzleBooble3dGame.Camera.View;

@@ -20,6 +20,7 @@ namespace PuzzleBooble3DClone
         GraphicsDeviceManager graphics;
 
         public Camera Camera;
+        public ContentRepository ContentRepository;
 
         public PuzzleBooble3dGame()
         {
@@ -27,11 +28,12 @@ namespace PuzzleBooble3DClone
             Content.RootDirectory = "Content";
 
             Camera = new Camera(this);
+            ContentRepository = new ContentRepository(this);
+            Components.Add(Camera);
+            Components.Add(ContentRepository);
 
             Floor floor = new Floor(this);
             BallGrid ballGrid = new BallGrid(this, floor);
-
-            Components.Add(Camera);
             Components.Add(floor);
             Components.Add(ballGrid);
 
