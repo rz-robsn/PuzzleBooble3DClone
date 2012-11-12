@@ -4,20 +4,25 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace PuzzleBooble3DClone.GameComponents
 {
     public class AimingArrow : PuzzleBoobleDrawableGameComponent
     {
-        public float WIDTH = 18.08f;
-        public float HEIGHT = 1.95f;
-        public float DEPTH = 2.08f;
+        public static readonly float WIDTH = 18.08f;
+        public static readonly float HEIGHT = 1.95f;
+        public static readonly float DEPTH = 2.08f;
+        private static readonly float INITIAL_ANGLE_Z = (float)Math.PI/2;
+        private static readonly float ROTATION_SPEED = (float)Math.PI/60;
+        private static readonly float ANGLE_Z_LOWER_BOUND = -(float)Math.PI / 2 + 0.2f;
+        private static readonly float ANGLE_Z_HIGHER_BOUND = (float)Math.PI / 2 - 0.2f;
 
         public Vector3 Position;
         public Matrix World;
         public Model Model;
 
-        private float AngleZ;
+        private float AngleZ;        
         private Floor Floor;
 
         public AimingArrow(PuzzleBooble3dGame game, Floor floor) : base(game) 
@@ -25,7 +30,7 @@ namespace PuzzleBooble3DClone.GameComponents
             Floor = floor;
 
             AngleZ = 0;
-            Position = Floor.Position + new Vector3(Floor.WIDTH/2, 0, 0);
+            Position = Floor.Position + new Vector3(Floor.WIDTH/2, 0, Ball.BALL_RADIUS);
         }
 
         public override void Initialize()
@@ -42,7 +47,18 @@ namespace PuzzleBooble3DClone.GameComponents
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            World = Matrix.CreateTranslation(Position);
+
+            KeyboardState keyboardState = Keyboard.GetState();
+            if (keyboardState.IsKeyDown(Keys.Left)) 
+            {
+                AngleZ = MathHelper.Clamp(AngleZ + ROTATION_SPEED, ANGLE_Z_LOWER_BOUND, ANGLE_Z_HIGHER_BOUND);
+            }
+            if (keyboardState.IsKeyDown(Keys.Right))
+            {
+                AngleZ = MathHelper.Clamp(AngleZ - ROTATION_SPEED, ANGLE_Z_LOWER_BOUND, ANGLE_Z_HIGHER_BOUND);
+            }
+
+            World = Matrix.CreateRotationZ(AngleZ) * Matrix.CreateTranslation(Position) ;
         }
 
         public override void Draw(GameTime gameTime)
@@ -60,6 +76,11 @@ namespace PuzzleBooble3DClone.GameComponents
 
                 mesh.Draw();
             }
+        }
+
+        public Vector3 GetCurrentDirection() 
+        {
+            return new Vector3((float)Math.Sin(INITIAL_ANGLE_Z + AngleZ), (float)Math.Cos(INITIAL_ANGLE_Z + AngleZ), 0);
         }
     }
 }
