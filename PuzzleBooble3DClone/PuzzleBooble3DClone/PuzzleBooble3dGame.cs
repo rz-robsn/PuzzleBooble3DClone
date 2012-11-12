@@ -34,8 +34,10 @@ namespace PuzzleBooble3DClone
 
             Floor floor = new Floor(this);
             BallGrid ballGrid = new BallGrid(this, floor);
+            AimingArrow arrow = new AimingArrow(this, floor);
             Components.Add(floor);
             Components.Add(ballGrid);
+            Components.Add(arrow);
 
         }
 

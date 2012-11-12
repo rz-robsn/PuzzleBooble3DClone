@@ -107,6 +107,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\AimingArrow.cs" />
     <Compile Include="GameComponents\Ball.cs" />
     <Compile Include="GameComponents\BallAnimationHelper.cs" />
     <Compile Include="GameComponents\BallGrid.cs" />
