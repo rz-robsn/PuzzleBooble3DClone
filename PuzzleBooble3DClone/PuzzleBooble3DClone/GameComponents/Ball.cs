@@ -11,13 +11,15 @@ namespace PuzzleBooble3DClone.GameComponents
     {
         public static readonly float BALL_RADIUS = 4.67f / 2;
 
+        public enum BallColor { Blue, Green, Red, Yellow, Orange, Purple, Silver, DarkGrey }
+
         public Vector3 Position;
         public float Speed;
-
         public Matrix World;
 
-        private Model model;
-
+        private Model Model;
+        private Texture2D Texture;
+        
         public Ball(PuzzleBooble3dGame game, Vector3 position) : base(game) 
         {
             Position = position;
@@ -31,7 +33,8 @@ namespace PuzzleBooble3DClone.GameComponents
         protected override void LoadContent()
         {
             base.LoadContent();
-            model = Game.Content.Load<Model>("Spheres/BlueSphere");
+            Model = Game.Content.Load<Model>("Spheres/BlueSphere");
+            Texture = Game.Content.Load<Texture2D>("Spheres/Green");
         }
 
         public override void Update(GameTime gameTime)
@@ -43,10 +46,12 @@ namespace PuzzleBooble3DClone.GameComponents
         public override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            foreach (ModelMesh mesh in model.Meshes)
+            foreach (ModelMesh mesh in Model.Meshes)
             {
                 foreach (BasicEffect effect in mesh.Effects)
                 {
+                    effect.TextureEnabled = true;
+                    effect.Texture = Texture;
                     effect.EnableDefaultLighting();
                     effect.World = World;
                     effect.View = PuzzleBooble3dGame.Camera.View;
