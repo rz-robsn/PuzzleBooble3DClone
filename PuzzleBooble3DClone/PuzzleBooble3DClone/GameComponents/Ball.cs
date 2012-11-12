@@ -15,6 +15,8 @@ namespace PuzzleBooble3DClone.GameComponents
 
         public Vector3 Position;
         public float Speed;
+        public float Acceleration;
+        public Vector3 Direction;
         public Matrix World;
         public BallColor Color;
         public Model Model;
@@ -43,6 +45,10 @@ namespace PuzzleBooble3DClone.GameComponents
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+            Speed += Acceleration;
+            Position += Speed * Direction;
+
             World = Matrix.CreateTranslation(Position);
 
             AnimationHelper.Update(gameTime);
@@ -52,6 +58,11 @@ namespace PuzzleBooble3DClone.GameComponents
         {
             base.Draw(gameTime);
             AnimationHelper.Draw(gameTime);
+        }
+
+        public bool IsMoving() 
+        {
+            return Speed > 0;
         }
     }
 }

@@ -25,6 +25,15 @@ namespace PuzzleBooble3DClone.GameComponents
         private float AngleZ;        
         private Floor Floor;
 
+        private Vector3 CurrentBallPosition 
+        {
+            get
+            { 
+                return new Vector3((float)Math.Sin(INITIAL_ANGLE_Z + AngleZ), (float)Math.Cos(INITIAL_ANGLE_Z + AngleZ), 0);
+            } 
+            set {} 
+        }
+
         public AimingArrow(PuzzleBooble3dGame game, Floor floor) : base(game) 
         {
             Floor = floor;
@@ -80,7 +89,7 @@ namespace PuzzleBooble3DClone.GameComponents
 
         public Vector3 GetCurrentDirection() 
         {
-            return new Vector3((float)Math.Sin(INITIAL_ANGLE_Z + AngleZ), (float)Math.Cos(INITIAL_ANGLE_Z + AngleZ), 0);
+            return new Vector3(-(float)Math.Sin(INITIAL_ANGLE_Z + AngleZ), (float)Math.Cos(INITIAL_ANGLE_Z + AngleZ), 0);
         }
     }
 }

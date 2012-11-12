@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace PuzzleBooble3DClone.GameComponents
 {
     public class ComponentController : PuzzleBoobleGameComponent
     {
+        private static readonly float CURRENT_BALL_ACCELERATION = -0f;
+        private static readonly float CURRENT_BALL_INITIAL_SPEED = 1f;
+
         public Ball CurrentBall { get; private set; }
         public Ball NextBall { get; private set; }
 
         private Floor Floor;
         private AimingArrow Arrow;
         private BallGrid Grid;
+
+        private KeyboardState PreviousKeyState;
 
        public ComponentController(PuzzleBooble3dGame puzzleGame, Floor floor, AimingArrow arrow, BallGrid grid)
             : base(puzzleGame)
@@ -29,6 +35,13 @@ namespace PuzzleBooble3DClone.GameComponents
 
         public override void Update(GameTime gameTime)
         {
+            KeyboardState state = Keyboard.GetState();
+            if ((state.IsKeyDown(Keys.Space) && !PreviousKeyState.IsKeyDown(Keys.Space)
+                    || state.IsKeyDown(Keys.Up) && !PreviousKeyState.IsKeyDown(Keys.Up))
+                && !CurrentBall.IsMoving())
+            {
+                ThrowCurrentBall();
+            }
         }
 
         public Vector3 GetCurrentBallPosition() 
@@ -45,6 +58,14 @@ namespace PuzzleBooble3DClone.GameComponents
 
             CurrentBall = ball;
             ball.Position = GetCurrentBallPosition();
+        }
+
+        private void ThrowCurrentBall() 
+        {
+            CurrentBall.Position = GetCurrentBallPosition();
+
+            CurrentBall.Direction = Arrow.GetCurrentDirection();
+            CurrentBall.Speed = CURRENT_BALL_INITIAL_SPEED;
         }
 
     }
