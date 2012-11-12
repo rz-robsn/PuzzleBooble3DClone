@@ -9,14 +9,14 @@ namespace PuzzleBooble3DClone.GameComponents
 {
     public class Ball : PuzzleBoobleDrawableGameComponent
     {
-        public static readonly float BALL_RADIUS = 4.65f / 2;
-
-        public Model model;
+        public static readonly float BALL_RADIUS = 4.67f / 2;
 
         public Vector3 Position;
         public float Speed;
 
         public Matrix World;
+
+        private Model model;
 
         public Ball(PuzzleBooble3dGame game, Vector3 position) : base(game) 
         {
@@ -31,7 +31,7 @@ namespace PuzzleBooble3DClone.GameComponents
         protected override void LoadContent()
         {
             base.LoadContent();
-            model = Game.Content.Load<Model>("UntexturedSphere");
+            model = Game.Content.Load<Model>("Spheres/BlueSphere");
         }
 
         public override void Update(GameTime gameTime)

@@ -42,17 +42,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UntexturedSphere.fbx">
-      <Name>UntexturedSphere</Name>
+    <Compile Include="floor.fbx">
+      <Name>floor</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="floor.fbx">
-      <Name>floor</Name>
+    <Compile Include="Spheres\BlueSphere.fbx">
+      <Name>BlueSphere</Name>
       <Importer>FbxImporter</Importer>
       <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Spheres\Blue.jpg">
+      <Name>Blue</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
