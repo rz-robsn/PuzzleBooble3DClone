@@ -125,6 +125,23 @@ namespace PuzzleBooble3DClone.GameComponents
             }
         }
 
+        public Ball.BallColor GetRandomColor()
+        {
+            // Pick One color out of those in the grid.
+            IEnumerable<Ball> BallPool = Balls.SelectMany(list => list).Where(ball => ball != null);
+
+            if (BallPool.Count() > 0)
+            {
+                Random random = new Random();
+                int randomNumber = random.Next(0, BallPool.Count());
+                return BallPool.ElementAt(randomNumber).Color;
+            }
+            else
+            {
+                return Ball.BallColor.Blue;
+            }
+        }
+
         private void RefreshBallPosition(int rowIndex, int colIndex, Ball ball)
         {
             if (rowIndex % 2 == 0)
