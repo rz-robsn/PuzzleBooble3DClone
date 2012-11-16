@@ -35,10 +35,12 @@ namespace PuzzleBooble3DClone
             Floor floor = new Floor(this);
             BallGrid ballGrid = new BallGrid(this, floor);
             AimingArrow arrow = new AimingArrow(this, floor);
-            ComponentController controller = new ComponentController(this, floor, arrow, ballGrid);
+            FieldBounds bounds = new FieldBounds(this, floor);
+            ComponentController controller = new ComponentController(this, floor, arrow, ballGrid, bounds);
             Components.Add(floor);
             Components.Add(ballGrid);
             Components.Add(arrow);
+            Components.Add(bounds);
             Components.Add(controller);
 
         }

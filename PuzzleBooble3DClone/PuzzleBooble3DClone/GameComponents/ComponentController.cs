@@ -18,19 +18,19 @@ namespace PuzzleBooble3DClone.GameComponents
         private Floor Floor;
         private AimingArrow Arrow;
         private BallGrid Grid;
+        private FieldBounds Bounds;
 
         private KeyboardState PreviousKeyState;
 
-       public ComponentController(PuzzleBooble3dGame puzzleGame, Floor floor, AimingArrow arrow, BallGrid grid)
+       public ComponentController(PuzzleBooble3dGame puzzleGame, Floor floor, AimingArrow arrow, BallGrid grid, FieldBounds bounds)
             : base(puzzleGame)
         {
             Floor = floor;
             Arrow = arrow;
             Grid = grid;
-
+            Bounds = bounds;
 
             SetCurrentBall(new Ball(PuzzleBooble3dGame, GetCurrentBallPosition(), Ball.BallColor.Blue));
-
         }
 
         public override void Update(GameTime gameTime)
@@ -41,6 +41,16 @@ namespace PuzzleBooble3DClone.GameComponents
                 && !CurrentBall.IsMoving())
             {
                 ThrowCurrentBall();
+            }
+
+            if (Bounds.BallIntersectsWithSides(CurrentBall)) 
+            {
+                
+            }
+
+            if (Bounds.BallIntersectsWithTop(CurrentBall)) 
+            {
+                
             }
         }
 

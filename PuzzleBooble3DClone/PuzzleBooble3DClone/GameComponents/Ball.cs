@@ -64,5 +64,23 @@ namespace PuzzleBooble3DClone.GameComponents
         {
             return Speed > 0;
         }
+
+        //public bool IntersectsWithBall(Ball ball) 
+        //{
+        
+        //}
+
+        public bool InterSectsWithBox(BoundingBox box) 
+        {
+            foreach (ModelMesh mesh in Model.Meshes) 
+            {
+                BoundingSphere boundingSphere = mesh.BoundingSphere.Transform(World);
+                if (boundingSphere.Intersects(box)) 
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
