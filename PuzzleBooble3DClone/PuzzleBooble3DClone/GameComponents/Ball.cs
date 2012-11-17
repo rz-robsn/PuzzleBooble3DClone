@@ -70,6 +70,29 @@ namespace PuzzleBooble3DClone.GameComponents
         
         //}
 
+        public void GoDark() {  }
+
+        public void FallDown() { }
+
+        public void Destroy() { }
+
+        public bool IntersectsWithBall(Ball b) 
+        {
+            foreach (ModelMesh mesh in Model.Meshes)
+            {
+                BoundingSphere boundingSphere = mesh.BoundingSphere.Transform(World);
+                foreach(ModelMesh bMesh in b.Model.Meshes)
+                {
+                    BoundingSphere ballboundingSphere = bMesh.BoundingSphere.Transform(b.World);
+                    if (ballboundingSphere.Intersects(boundingSphere)) 
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;   
+        }
+
         public bool InterSectsWithBox(BoundingBox box) 
         {
             foreach (ModelMesh mesh in Model.Meshes) 

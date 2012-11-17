@@ -111,13 +111,16 @@
     <Compile Include="GameComponents\Ball.cs" />
     <Compile Include="GameComponents\BallAnimationHelper.cs" />
     <Compile Include="GameComponents\BallGrid.cs" />
+    <Compile Include="GameComponents\BoundsObserver.cs" />
     <Compile Include="GameComponents\Camera.cs" />
     <Compile Include="GameComponents\ComponentController.cs" />
     <Compile Include="GameComponents\ContentRepository.cs" />
     <Compile Include="GameComponents\FieldBounds.cs" />
     <Compile Include="GameComponents\Floor.cs" />
+    <Compile Include="GameComponents\HangingBallsObserver.cs" />
     <Compile Include="GameComponents\PuzzleBoobleDrawableGameComponent.cs" />
     <Compile Include="GameComponents\PuzzleBoobleGameComponent.cs" />
+    <Compile Include="GameComponents\Score.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PuzzleBooble3dGame.cs" />

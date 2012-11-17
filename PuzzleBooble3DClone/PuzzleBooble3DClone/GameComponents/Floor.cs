@@ -21,13 +21,15 @@ namespace PuzzleBooble3DClone.GameComponents
         private float angle = 0;
 
 
-        public Floor(PuzzleBooble3dGame game) : base(game) {}
+        public Floor(PuzzleBooble3dGame game) : base(game) 
+        {
+            Position = new Vector3(0, 0, 0);
+            TopLeftPosition = Position - new Vector3(WIDTH / 2, HEIGHT / 2, 0);
+        }
 
         public override void Initialize()
         {
-            base.Initialize();
-
-            Position = new Vector3(0, 0, 0);
+            base.Initialize();            
         }
 
         protected override void LoadContent()
@@ -62,9 +64,6 @@ namespace PuzzleBooble3DClone.GameComponents
             }
         }
 
-        public Vector3 GetTopLeftPosition() 
-        {
-            return Position - new Vector3(WIDTH/2, HEIGHT/2, 0);
-        }
+        public Vector3 TopLeftPosition ;
     }
 }

@@ -62,6 +62,15 @@ namespace PuzzleBooble3DClone.GameComponents
                 CurrentBall.Direction.Y *= -1;
             }
 
+            BallGrid.BallSlot interSectingSlot = Grid.BallsIntersectingWithBall(CurrentBall);
+            if (CurrentBall.IsMoving() && (interSectingSlot != null || Bounds.BallIntersectsWithTop(CurrentBall)))
+            {
+                Grid.SetBallToNearestSlot(CurrentBall, interSectingSlot);
+                SetCurrentBall(NextBall);
+                SetNextBall(new Ball(PuzzleBooble3dGame, Vector3.Zero, Grid.GetRandomColor()));
+            }
+
+
             if (Bounds.BallIntersectsWithTop(CurrentBall)) 
             {
                 
