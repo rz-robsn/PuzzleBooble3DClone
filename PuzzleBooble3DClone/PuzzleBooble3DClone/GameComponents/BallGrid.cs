@@ -486,7 +486,7 @@ namespace PuzzleBooble3DClone.GameComponents
             {
                 ball.Position = Position + new Vector3(rowIndex * 2 * Ball.BALL_RADIUS, colIndex * 2 * Ball.BALL_RADIUS + ODD_ROW_OFFSET, 0); ;
             }
-            ball.Speed = 0;
+            ball.Normalize();
         }
 
         private Vector3 GetSlotCenter(BallSlot slot)

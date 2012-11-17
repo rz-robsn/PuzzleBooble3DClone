@@ -10,8 +10,8 @@ namespace PuzzleBooble3DClone.GameComponents
 {
     public class ComponentController : PuzzleBoobleGameComponent
     {
-        private static readonly float CURRENT_BALL_ACCELERATION = -0f;
-        private static readonly float CURRENT_BALL_INITIAL_SPEED = 1f;
+        private static readonly float CURRENT_BALL_ACCELERATION = -0.007f;
+        private static readonly float CURRENT_BALL_INITIAL_SPEED = 1.3f;
 
         public Ball CurrentBall { get; private set; }
         public Ball NextBall { get; private set; }
@@ -106,6 +106,9 @@ namespace PuzzleBooble3DClone.GameComponents
 
             CurrentBall.Direction = Arrow.GetCurrentDirection();
             CurrentBall.Speed = CURRENT_BALL_INITIAL_SPEED;
+            CurrentBall.Acceleration = CURRENT_BALL_ACCELERATION;
+
+            CurrentBall.Roll();
 
             ThrowBallTimer.Stop();
             ResetTimer();

@@ -11,6 +11,7 @@ namespace PuzzleBooble3DClone.GameComponents
     {
         private static float DESTROYED_BALL_SCALE_DECREASE_SPEED = 0.05f;
         private static float FALLING_BALL_SPEED = 0.5f;
+        private static float ROLLING_BALL_MINIMUM_SPEED = 0.3f;
 
         private Ball Ball;
 
@@ -35,6 +36,9 @@ namespace PuzzleBooble3DClone.GameComponents
                 case BallState.Loading:
                     break;
                 case BallState.Rolling:
+                    Ball.Speed = MathHelper.Clamp(Ball.Speed + Ball.Acceleration, ROLLING_BALL_MINIMUM_SPEED, Ball.Speed + Ball.Acceleration);
+                    Ball.Position += Ball.Speed * Ball.Direction;
+
                     break;
                 case BallState.Destroyed:
                     DestroyedCurrentScale = MathHelper.Clamp(DestroyedCurrentScale - DESTROYED_BALL_SCALE_DECREASE_SPEED, 0 , 1);
@@ -48,6 +52,18 @@ namespace PuzzleBooble3DClone.GameComponents
                 default:
                     break;
             }
+        }
+
+        public void Normalize() 
+        {
+            Ball.Speed = 0;
+            Ball.Acceleration = 0;
+            State = BallState.Normal;
+        }
+
+        public void Roll() 
+        {
+            State = BallState.Rolling;
         }
 
         public void Destroy()

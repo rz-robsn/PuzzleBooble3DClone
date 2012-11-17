@@ -46,9 +46,6 @@ namespace PuzzleBooble3DClone.GameComponents
         {
             base.Update(gameTime);
 
-            Speed += Acceleration;
-            Position += Speed * Direction;
-
             World = Matrix.Identity;            
             AnimationHelper.Update(gameTime);
             World *= Matrix.CreateTranslation(Position);
@@ -69,6 +66,16 @@ namespace PuzzleBooble3DClone.GameComponents
         //{
         
         //}
+
+        public void Normalize() 
+        {
+            AnimationHelper.Normalize();
+        }
+
+        public void Roll() 
+        {
+            AnimationHelper.Roll();
+        }
 
         public void Destroy()
         {
