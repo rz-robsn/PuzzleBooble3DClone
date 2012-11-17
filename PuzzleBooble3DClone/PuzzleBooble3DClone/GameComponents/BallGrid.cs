@@ -190,56 +190,27 @@ namespace PuzzleBooble3DClone.GameComponents
 
             if (emptySlots.Count > 0)
             {
-                if (emptySlots.ElementAt(0).RowIndex > GetCurrentLowestRowIndexLimit())
+                try
                 {
-                    //Set All balls to Dark
-                    foreach (List<Ball> list in Balls)
-                    {
-                        foreach (Ball hangingBall in list)
-                        {
-                            if (hangingBall != null)
-                            {
-                                hangingBall.GoDark();
-                            }
-                        }
-                    }
-                    Observer.ForEach(observer => observer.OnPlayerLoses());
+                    nearestRowIndex = emptySlots.ElementAt(0).RowIndex;
+                    nearestColumnIndex = emptySlots.ElementAt(0).ColumnIndex;
 
+                    SetBallAtPosition(nearestRowIndex, nearestColumnIndex, ball);
+                    DestroyAlignedPieceAtSlot(nearestRowIndex, nearestColumnIndex);
+
+                    int numOfBallsFallen = FallDownAllBallsWithNoUpperAdjacentBalls(nearestRowIndex, nearestColumnIndex);
+                    CurrentScore.Value += (numOfBallsFallen > 0) ? (int)Math.Pow(2, numOfBallsFallen) * 10
+                                                                 : 0;
+                    CheckIfPlayerWins();
+                    CheckIfPlayerLost();            
                 }
-
-                nearestRowIndex = emptySlots.ElementAt(0).RowIndex;
-                nearestColumnIndex = emptySlots.ElementAt(0).ColumnIndex;
+                catch (SlotOccupiedException ex)
+                {
+                }
             }
             else
             {
-                // There is no room left to place that ball.
-                //Set All balls to Dark
-                foreach (List<Ball> list in Balls)
-                {
-                    foreach (Ball hangingBall in list)
-                    {
-                        if (hangingBall != null)
-                        {
-                            hangingBall.GoDark();
-                        }
-                    }
-                }
-                Observer.ForEach(observer => observer.OnPlayerLoses());
-                nearestColumnIndex = interSectingSlot.ColumnIndex;
-                nearestRowIndex = interSectingSlot.RowIndex;
-            }
-            try
-            {
-                SetBallAtPosition(nearestRowIndex, nearestColumnIndex, ball);
-                DestroyAlignedPieceAtSlot(nearestRowIndex, nearestColumnIndex);
-
-                int numOfBallsFallen = FallDownAllBallsWithNoUpperAdjacentBalls(nearestRowIndex, nearestColumnIndex);
-                CurrentScore.Value += (numOfBallsFallen > 0) ? (int)Math.Pow(2, numOfBallsFallen) * 10
-                                                             : 0;
-                CheckIfPlayerWins();
-            }
-            catch (SlotOccupiedException ex)
-            {
+                CheckIfPlayerLost();
             }
         }
 
@@ -506,7 +477,7 @@ namespace PuzzleBooble3DClone.GameComponents
 
         private void CheckIfPlayerLost()
         {
-            if (GetLowestOccupiedRowIndex() > GetCurrentLowestRowIndexLimit())
+            if (Balls.Any(row => row.Any(ball => ball != null && Bounds.BallReachedBottomLimit(ball))))
             {
                 //Set All balls to Dark
                 foreach (List<Ball> list in Balls)

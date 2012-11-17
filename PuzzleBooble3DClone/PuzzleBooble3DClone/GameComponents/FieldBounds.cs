@@ -11,6 +11,7 @@ namespace PuzzleBooble3DClone.GameComponents
     {
         public static float ROW_HEIGHT = 2*Ball.BALL_RADIUS;
         private static int NUMBER_OF_ROWS = 10;
+        private static float BOTTOM_LIMIT_X = Floor.WIDTH * 3 / 10;
 
         /// <summary>
         /// The Bounds Of the Ball Field.
@@ -50,7 +51,12 @@ namespace PuzzleBooble3DClone.GameComponents
 
         public bool BallIntersectsWithTop(Ball ball) 
         {
-            return ball.Position.X < -Floor.HEIGHT / 2;
+            return ball.Position.X < Floor.TopLeftPosition.X - Ball.BALL_RADIUS;
+        }
+
+        public bool BallReachedBottomLimit(Ball ball) 
+        {
+            return ball.Position.X + Ball.BALL_RADIUS/2 > BOTTOM_LIMIT_X;
         }
 
         public void RemoveOneRow()
