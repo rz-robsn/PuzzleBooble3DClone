@@ -10,7 +10,7 @@ namespace PuzzleBooble3DClone.GameComponents
     public class BallAnimationHelper
     {
         private static float DESTROYED_BALL_SCALE_DECREASE_SPEED = 0.05f;
-        private static float FALLING_BALL_SPEED = 0.5f;
+        private static float FALLING_BALL_ACCELERATION = 0.005f;
         private static float ROLLING_BALL_MINIMUM_SPEED = 0.3f;
 
         private Ball Ball;
@@ -19,6 +19,9 @@ namespace PuzzleBooble3DClone.GameComponents
         private BallState State;
 
         private float DestroyedCurrentScale;
+
+        private float CurrentRotationSpeed;
+        private float CurrentAngle;
 
         public BallAnimationHelper(Ball ball) 
         {
@@ -39,13 +42,23 @@ namespace PuzzleBooble3DClone.GameComponents
                     Ball.Speed = MathHelper.Clamp(Ball.Speed + Ball.Acceleration, ROLLING_BALL_MINIMUM_SPEED, Ball.Speed + Ball.Acceleration);
                     Ball.Position += Ball.Speed * Ball.Direction;
 
+                    CurrentRotationSpeed = Ball.Speed /10;
+                    CurrentAngle += CurrentRotationSpeed;                   
+                    Ball.World *= Matrix.CreateRotationX(CurrentAngle * Ball.Direction.Y) * Matrix.CreateRotationY(CurrentAngle * Ball.Direction.X);
+
                     break;
                 case BallState.Destroyed:
                     DestroyedCurrentScale = MathHelper.Clamp(DestroyedCurrentScale - DESTROYED_BALL_SCALE_DECREASE_SPEED, 0 , 1);
                     Ball.World = Matrix.CreateScale(DestroyedCurrentScale);
                     break;
                 case BallState.Falling:
-                    Ball.Position += new Vector3(FALLING_BALL_SPEED, 0, 0);
+                    Ball.Speed += Ball.Acceleration;
+                    Ball.Position += Ball.Speed * Ball.Direction;
+                    CurrentRotationSpeed = Ball.Speed /10;
+                    CurrentAngle += CurrentRotationSpeed;                   
+                    Ball.World *= Matrix.CreateRotationX(CurrentAngle * Ball.Direction.Y) * Matrix.CreateRotationY(CurrentAngle * Ball.Direction.X);
+
+
                     break;
                 case BallState.Dark:
                     break;
@@ -75,6 +88,10 @@ namespace PuzzleBooble3DClone.GameComponents
         public void FallDown()
         {
             State = BallState.Falling;
+            Ball.Direction = Vector3.UnitX;
+            Ball.Acceleration = FALLING_BALL_ACCELERATION;
+            Ball.Speed = 0;
+            CurrentAngle = 0;
         }
 
         public void Load()
