@@ -10,6 +10,7 @@ namespace PuzzleBooble3DClone.GameComponents
     public class BallAnimationHelper
     {
         private static float DESTROYED_BALL_SCALE_DECREASE_SPEED = 0.05f;
+        private static float FALLING_BALL_SPEED = 0.5f;
 
         private Ball Ball;
 
@@ -40,6 +41,7 @@ namespace PuzzleBooble3DClone.GameComponents
                     Ball.World = Matrix.CreateScale(DestroyedCurrentScale);
                     break;
                 case BallState.Falling:
+                    Ball.Position += new Vector3(FALLING_BALL_SPEED, 0, 0);
                     break;
                 case BallState.Dark:
                     break;
