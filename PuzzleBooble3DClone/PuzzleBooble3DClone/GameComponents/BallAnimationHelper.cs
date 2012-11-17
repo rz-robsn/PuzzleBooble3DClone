@@ -9,16 +9,64 @@ namespace PuzzleBooble3DClone.GameComponents
 {
     public class BallAnimationHelper
     {
+        private static float DESTROYED_BALL_SCALE_DECREASE_SPEED = 0.05f;
+
         private Ball Ball;
+
+        public enum BallState { Normal, Loading, Rolling, Destroyed, Falling, Dark };
+        private BallState State;
+
+        private float DestroyedCurrentScale;
 
         public BallAnimationHelper(Ball ball) 
         {
             Ball = ball;
+            State = BallState.Normal;
+
         }
 
         public void Update(GameTime gameTime) 
         {
-        
+            switch (State)
+            {
+                case BallState.Normal:
+                    break;
+                case BallState.Loading:
+                    break;
+                case BallState.Rolling:
+                    break;
+                case BallState.Destroyed:
+                    DestroyedCurrentScale = MathHelper.Clamp(DestroyedCurrentScale - DESTROYED_BALL_SCALE_DECREASE_SPEED, 0 , 1);
+                    Ball.World = Matrix.CreateScale(DestroyedCurrentScale);
+                    break;
+                case BallState.Falling:
+                    break;
+                case BallState.Dark:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public void Destroy()
+        {
+            State = BallState.Destroyed;
+            DestroyedCurrentScale = 1;
+        }
+
+        public void FallDown()
+        {
+            State = BallState.Falling;
+        }
+
+        public void Load()
+        {
+            State = BallState.Loading;
+        }
+
+        public void GoDark()
+        {
+            State = BallState.Dark;
         }
 
         public void Draw(GameTime gameTime) 

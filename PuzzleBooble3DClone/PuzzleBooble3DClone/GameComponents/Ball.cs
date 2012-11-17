@@ -49,9 +49,9 @@ namespace PuzzleBooble3DClone.GameComponents
             Speed += Acceleration;
             Position += Speed * Direction;
 
-            World = Matrix.CreateTranslation(Position);
-
+            World = Matrix.Identity;            
             AnimationHelper.Update(gameTime);
+            World *= Matrix.CreateTranslation(Position);
         }
 
         public override void Draw(GameTime gameTime)
@@ -70,12 +70,25 @@ namespace PuzzleBooble3DClone.GameComponents
         
         //}
 
-        public void GoDark() {  }
+        public void Destroy()
+        {
+            AnimationHelper.Destroy();
+        }
 
-        public void FallDown() { }
+        public void FallDown()
+        {
+            AnimationHelper.FallDown();
+        }
 
-        public void Destroy() { }
+        public void Load()
+        {
+            AnimationHelper.Load();
+        }
 
+        public void GoDark()
+        {
+            AnimationHelper.GoDark();
+        }
         public bool IntersectsWithBall(Ball b) 
         {
             foreach (ModelMesh mesh in Model.Meshes)
