@@ -82,6 +82,11 @@ namespace PuzzleBooble3DClone.GameComponents
             return Arrow.Position;
         }
 
+        public Vector3 GetNextBallPosition()
+        {
+            return Floor.Position + new Vector3(Floor.WIDTH/2, -Floor.HEIGHT/4, Ball.BALL_RADIUS);
+        }
+
         private void SetCurrentBall(Ball ball)
         {
             if(!PuzzleBooble3dGame.Components.Contains(ball))
@@ -97,6 +102,9 @@ namespace PuzzleBooble3DClone.GameComponents
         private void SetNextBall(Ball ball)
         {
             NextBall = ball;
+            NextBall.Position = GetNextBallPosition();
+            PuzzleBooble3dGame.Components.Add(NextBall);
+            NextBall.Load();
         }
 
         private void ThrowCurrentBall() 
