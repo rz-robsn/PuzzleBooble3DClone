@@ -115,7 +115,7 @@ namespace PuzzleBooble3DClone.GameComponents
 
             CurrentBall.Direction = Arrow.GetCurrentDirection();
             CurrentBall.Speed = CURRENT_BALL_INITIAL_SPEED;
-            CurrentBall.Acceleration = CURRENT_BALL_ACCELERATION;
+            CurrentBall.Acceleration = CURRENT_BALL_ACCELERATION * (float)Math.Abs(Math.Cos(Arrow.GetAngleZ()));
 
             CurrentBall.Roll();
 

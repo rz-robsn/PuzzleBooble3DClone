@@ -91,5 +91,10 @@ namespace PuzzleBooble3DClone.GameComponents
         {
             return new Vector3(-(float)Math.Sin(INITIAL_ANGLE_Z + AngleZ), (float)Math.Cos(INITIAL_ANGLE_Z + AngleZ), 0);
         }
+
+        public float GetAngleZ() 
+        {
+            return INITIAL_ANGLE_Z + AngleZ;
+        }
     }
 }

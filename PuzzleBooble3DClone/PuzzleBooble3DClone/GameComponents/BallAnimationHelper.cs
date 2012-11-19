@@ -123,6 +123,10 @@ namespace PuzzleBooble3DClone.GameComponents
                     effect.TextureEnabled = true;
                     effect.Texture = GetTexture();
                     effect.EnableDefaultLighting();
+                    effect.DiffuseColor = new Vector3(0.5f,0.5f,0.5f);
+                    effect.AmbientLightColor = new Vector3(1f, 1f, 1f);
+                    //effect.SpecularColor = Color.LightGray.ToVector3();
+                   
                     effect.World = Ball.World;
                     effect.View = Ball.PuzzleBooble3dGame.Camera.View;
                     effect.Projection = Ball.PuzzleBooble3dGame.Camera.Projection;

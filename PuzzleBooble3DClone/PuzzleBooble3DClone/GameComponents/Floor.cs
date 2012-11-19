@@ -58,6 +58,8 @@ namespace PuzzleBooble3DClone.GameComponents
                     effect.World = World;
                     effect.View = PuzzleBooble3dGame.Camera.View;
                     effect.Projection = PuzzleBooble3dGame.Camera.Projection;
+                    effect.DiffuseColor = new Vector3(0.5f, 0.5f, 0.5f);
+                    effect.AmbientLightColor = new Vector3(0.5f, 0.5f, 0.5f);
                 }
 
                 mesh.Draw();
