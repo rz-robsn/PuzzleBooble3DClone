@@ -15,12 +15,16 @@ namespace PuzzleBooble3DClone
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class PuzzleBooble3dGame : Microsoft.Xna.Framework.Game
+    public class PuzzleBooble3dGame : Microsoft.Xna.Framework.Game, HangingBallsObserver
     {
         GraphicsDeviceManager graphics;
 
         public Camera Camera;
         public ContentRepository ContentRepository;
+
+        private AimingArrow Arrow;
+        private Score Score;
+        private ComponentController ComponentController;
 
         public PuzzleBooble3dGame()
         {
@@ -34,17 +38,17 @@ namespace PuzzleBooble3DClone
 
             Floor floor = new Floor(this);
             FieldBounds bounds = new FieldBounds(this, floor);
-            Score score = new Score(this);
-            BallGrid ballGrid = new BallGrid(this, floor, bounds, score);
-            AimingArrow arrow = new AimingArrow(this, floor);
-            ComponentController controller = new ComponentController(this, floor, arrow, ballGrid, bounds);            
+            Score = new Score(this);
+            BallGrid ballGrid = new BallGrid(this, floor, bounds, Score);
+            ballGrid.Observer.Add(this);
+            Arrow = new AimingArrow(this, floor);
+            ComponentController = new ComponentController(this, floor, Arrow, ballGrid, bounds);            
             Components.Add(floor);
             Components.Add(ballGrid);
-            Components.Add(arrow);
+            Components.Add(Arrow);
             Components.Add(bounds);
-            Components.Add(controller);
-            Components.Add(score);
-
+            Components.Add(ComponentController);
+            Components.Add(Score);
         }
 
         /// <summary>
@@ -103,6 +107,20 @@ namespace PuzzleBooble3DClone
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        public void OnPlayerWins()
+        {
+            Score.Message = "You Won !";
+        }
+
+        public void OnPlayerLoses()
+        {
+            Components.Remove(Arrow);
+            Components.Remove(ComponentController.CurrentBall);
+            Components.Remove(ComponentController);
+
+            Score.Message = "You Lost.";
         }
     }
 }

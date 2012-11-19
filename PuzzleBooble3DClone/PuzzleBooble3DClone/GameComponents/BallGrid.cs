@@ -82,6 +82,7 @@ namespace PuzzleBooble3DClone.GameComponents
             CurrentScore = score;
 
             DeletedBalls = new List<Ball>();
+            Observer = new List<HangingBallsObserver>();
 
             Balls = new List<List<Ball>>(NUMBER_OF_ROWS);
             for (int i = 0; i < NUMBER_OF_ROWS; i++)
@@ -210,7 +211,19 @@ namespace PuzzleBooble3DClone.GameComponents
             }
             else
             {
-                CheckIfPlayerLost();
+                //Set All balls to Dark
+                foreach (List<Ball> list in Balls)
+                {
+                    foreach (Ball b in list)
+                    {
+                        if (b != null)
+                        {
+                            b.GoDark();
+                        }
+                    }
+                }
+
+                Observer.ForEach(observer => observer.OnPlayerLoses());
             }
         }
 

@@ -15,8 +15,10 @@ namespace PuzzleBooble3DClone.GameComponents
         DepthStencilState DepthStateEnabled;
 
         private static Vector2 POSITION = new Vector2(50, 15);
+        private static Vector2 MESSAGE_POSITION = new Vector2(275, 15);
 
         public int Value;
+        public String Message;
 
         public Score(PuzzleBooble3dGame puzzlegame) : base(puzzlegame) 
         {
@@ -45,9 +47,15 @@ namespace PuzzleBooble3DClone.GameComponents
             spriteBatch.Begin();
             spriteBatch.DrawString(PuzzleBooble3dGame.ContentRepository.SpriteFont, "Score:", POSITION , Color.GreenYellow);
             spriteBatch.DrawString(PuzzleBooble3dGame.ContentRepository.SpriteFont, String.Format("{0:D8}", Value), POSITION + new Vector2(2, 16), Color.WhiteSmoke);
+            if (Message != null && Message.Length > 0) 
+            {
+                spriteBatch.DrawString(PuzzleBooble3dGame.ContentRepository.SpriteFont, Message, MESSAGE_POSITION, Color.GhostWhite);            
+            }
+
             spriteBatch.End();
 
             GraphicsDevice.DepthStencilState = DepthStateEnabled;
         }
+
     }
 }
