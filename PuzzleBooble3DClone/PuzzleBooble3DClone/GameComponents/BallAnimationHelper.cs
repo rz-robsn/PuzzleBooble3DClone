@@ -9,9 +9,12 @@ namespace PuzzleBooble3DClone.GameComponents
 {
     public class BallAnimationHelper
     {
+        private static float LOADING_BALL_SCALE_DECREASE_SPEED = 0.05f;
         private static float DESTROYED_BALL_SCALE_DECREASE_SPEED = 0.05f;
         private static float FALLING_BALL_ACCELERATION = 0.005f;
         private static float ROLLING_BALL_MINIMUM_SPEED = 0.3f;
+
+        private static Vector3 LOADING_BALL_POSITION = new Vector3(Floor.WIDTH, Floor.HEIGHT/2, Ball.BALL_RADIUS);
 
         private Ball Ball;
 
@@ -19,6 +22,8 @@ namespace PuzzleBooble3DClone.GameComponents
         private BallState State;
 
         private float DestroyedCurrentScale;
+
+        private float LoadingCurrentScale;
 
         private float CurrentRotationSpeed;
         private float CurrentAngle;
@@ -36,8 +41,12 @@ namespace PuzzleBooble3DClone.GameComponents
             {
                 case BallState.Normal:
                     break;
+
                 case BallState.Loading:
+                    LoadingCurrentScale = MathHelper.Clamp(LoadingCurrentScale + LOADING_BALL_SCALE_DECREASE_SPEED, 0, 1);
+                    Ball.World *= Matrix.CreateScale(LoadingCurrentScale);
                     break;
+                    
                 case BallState.Rolling:
                     Ball.Speed = MathHelper.Clamp(Ball.Speed + Ball.Acceleration, ROLLING_BALL_MINIMUM_SPEED, Ball.Speed + Ball.Acceleration);
                     Ball.Position += Ball.Speed * Ball.Direction;
@@ -97,6 +106,7 @@ namespace PuzzleBooble3DClone.GameComponents
         public void Load()
         {
             State = BallState.Loading;
+            LoadingCurrentScale = 0;
         }
 
         public void GoDark()

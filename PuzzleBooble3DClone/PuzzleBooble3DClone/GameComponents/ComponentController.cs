@@ -90,7 +90,8 @@ namespace PuzzleBooble3DClone.GameComponents
             }
 
             CurrentBall = ball;
-            ball.Position = GetCurrentBallPosition();
+            CurrentBall.Position = GetCurrentBallPosition();
+            CurrentBall.Load();
         }
 
         private void SetNextBall(Ball ball)
