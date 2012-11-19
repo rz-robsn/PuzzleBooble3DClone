@@ -78,6 +78,8 @@ namespace PuzzleBooble3DClone.GameComponents
                 foreach (BasicEffect effect in mesh.Effects)
                 {
                     effect.EnableDefaultLighting();
+                    effect.DiffuseColor = new Vector3(0.5f, 0.5f, 0.5f);
+                    effect.AmbientLightColor = new Vector3(1f, 1f, 1f);
                     effect.World = World;
                     effect.View = PuzzleBooble3dGame.Camera.View;
                     effect.Projection = PuzzleBooble3dGame.Camera.Projection;
