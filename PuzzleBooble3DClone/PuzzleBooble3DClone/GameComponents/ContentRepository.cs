@@ -17,6 +17,8 @@ namespace PuzzleBooble3DClone.GameComponents
         public Texture2D SilverTexture;
         public Texture2D DarkGreyTexture;
 
+        public SpriteFont SpriteFont;
+
         public ContentRepository(PuzzleBooble3dGame puzzleGame) : base(puzzleGame) { }
 
         protected override void LoadContent()
@@ -30,6 +32,8 @@ namespace PuzzleBooble3DClone.GameComponents
             PurpleTexture = Game.Content.Load<Texture2D>("Spheres/Purple");
             SilverTexture = Game.Content.Load<Texture2D>("Spheres/Silver");
             DarkGreyTexture = Game.Content.Load<Texture2D>("Spheres/DarkGrey");
+
+            SpriteFont = Game.Content.Load<SpriteFont>("Font");
         }
     }
 }
